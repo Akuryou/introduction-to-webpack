@@ -1,0 +1,14 @@
+{
+  "name": "introduction-to-webpack",
+  "version": "0.0.0",
+  "description": "A presentation about webpack basics",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "presentation"
+  ],
+  "author": "Fabian Ihl",
+  "license": "MIT"
+}
