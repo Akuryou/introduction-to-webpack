@@ -3,7 +3,28 @@
   "version": "0.0.0",
   "description": "A presentation about webpack basics",
   "scripts": {
+    "start": "webpack-dev-server --inline",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "css-loader": "0.25.0",
+    "file-loader": "0.9.0",
+    "font-awesome": "4.6.3",
+    "highlight.js": "9.6.0",
+    "html-webpack-plugin": "2.22.0",
+    "jscs": "^3.0.7",
+    "jscs-loader": "^0.3.0",
+    "jshint": "^2.9.3",
+    "jshint-loader": "^0.8.3",
+    "pug": "^2.0.0-beta6",
+    "pug-loader": "2.3.0",
+    "reveal-code-focus": "1.0.0",
+    "reveal.js": "3.3.0",
+    "script-loader": "0.7.0",
+    "style-loader": "0.13.1",
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.15.2"
   },
   "keywords": [
     "webpack",

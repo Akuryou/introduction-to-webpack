@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    title An introduction to webpack
+    style.
+      .line {
+        display: block
+      }
+      .line.focus {
+        background: #555;
+      }
+      .reveal .slides section .fragment.current-only {
+        opacity: 1;
+        visibility: visible;
+        display: none;
+      }
+      .reveal .slides section .fragment.current-only.current-fragment {
+        display: block;
+      }
+  body
+    .reveal
+      .slides
+        section
+          h2 An introduction to
+          p
+            img(src=require("./assets/wp-logo-text.png"))
+          p
+            i by Fabian Ihl
