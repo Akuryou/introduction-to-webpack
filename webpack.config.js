@@ -13,6 +13,17 @@ module.exports = {
     filename: 'bundle-[hash].js'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'jscs-loader'
+      }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'jshint-loader'
+      }
+    ],
     loaders: [
       {test: /\.pug$/, loader: 'pug-loader'},
       {test: /\.css$/, loader: 'style!css'},
@@ -29,6 +40,22 @@ module.exports = {
     new webpack.optimize.DedupePlugin(), // removes duplicate code
     new webpack.optimize.OccurrenceOrderPlugin(true), // optimises size
   ],
+  jscs: {
+    preset: 'airbnb',
+    requirePaddingNewLinesAfterBlocks: {
+      allExcept: ["inCallExpressions", "inNewExpressions", "inArrayExpressions", "inProperties"]
+    },
+    requireSpacesInAnonymousFunctionExpression: {
+      beforeOpeningCurlyBrace: true
+    },
+    requireSpacesInsideObjectBrackets: false,
+    maximumLineLength: {
+      value: 140
+    },
+  },
+  jshint: {
+    browser: true,
+  },
   devServer: {
     host: '0.0.0.0',
   },
