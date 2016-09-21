@@ -43,7 +43,7 @@ module.exports = {
   jscs: {
     preset: 'airbnb',
     requirePaddingNewLinesAfterBlocks: {
-      allExcept: ["inCallExpressions", "inNewExpressions", "inArrayExpressions", "inProperties"]
+      allExcept: ['inCallExpressions', 'inNewExpressions', 'inArrayExpressions', 'inProperties']
     },
     requireSpacesInAnonymousFunctionExpression: {
       beforeOpeningCurlyBrace: true
