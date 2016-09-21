@@ -217,3 +217,34 @@ html(lang="en")
           p.fragment.current-only(data-code-focus="9") Handling assets using the file-loader.
           p.fragment.current-only(data-code-focus="10") Loaders can be used as pipes.
           p.fragment There are loaders for almost everything out there.
+        section
+          section
+            h2 Special case
+            b index.html
+            p.fragment Entrypoint will always be a js file.
+            p.fragment How do we tell wepack to handle our index template?
+            p.fragment: i.fa.fa-arrow-down.fa-3x
+          section
+            b HtmlWebpackPlugin to the rescue
+            pre.fragment
+              code.javascript.
+                var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+                module.exports = {
+                  entry: '/src/entry.js',
+                  output: {
+                    path: './build/',
+                    filename: '[name]-[hash].js'
+                  },
+                  plugins: [
+                    new HtmlWebpackPlugin({ template: './src/index.html', }),
+                  ]
+                };
+            p.fragment.current-only(data-code-focus="1") Require the plugin
+            p.fragment.current-only(data-code-focus="9-11") Plugin section
+            p.fragment(data-code-focus="10") HtmlWebpackPlugin will ...
+            ul.fragment
+              li Copy index.html into the output folder
+              li Inject all bundles as script tags
+          section
+            p: i.fa.fa-arrow-right.fa-3x
