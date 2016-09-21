@@ -248,3 +248,13 @@ html(lang="en")
               li Inject all bundles as script tags
           section
             p: i.fa.fa-arrow-right.fa-3x
+        section
+          h2 Running webpack
+          h3.fragment Build
+          pre.fragment
+            code.shell $ webpack
+          p.fragment Will look for webpack.config.js and build your app as configured
+          h3.fragment Development
+          pre.fragment
+            code.shell $ webpack-dev-server
+          p.fragment Will look for webpack.config.js and launch a dev server with auto reload
