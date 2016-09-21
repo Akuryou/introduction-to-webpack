@@ -179,3 +179,20 @@ html(lang="en")
                 = '<img src=require("./assets/someImage.png")/>'
           section
             p: i.fa.fa-arrow-right.fa-3x
+        section
+          h2 Minimal configuration
+          i (webpack.config.js)
+          pre.fragment
+            code.javascript.
+              module.exports = {
+                entry: './src/entry.js',
+                output: {
+                  path: './build/',
+                  filename: '[name]-[hash].js'
+                }
+              };
+          p.fragment.current-only(data-code-focus="1") (Yes, it's a module, too)
+          p.fragment.current-only(data-code-focus="2") Your main script file as entry point.
+          p.fragment.current-only(data-code-focus="3-6") Output config
+          p.fragment.current-only(data-code-focus="4") Output folder
+          p.fragment.current-only(data-code-focus="5") Name of your final js bundle, with cache busting enabled
