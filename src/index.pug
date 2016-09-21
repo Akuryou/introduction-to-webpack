@@ -295,3 +295,28 @@ html(lang="en")
               li app-00d6787913610ea5ba02.js
           section
             p: i.fa.fa-arrow-right.fa-3x
+        section
+          h2 Linting
+          pre.fragment
+            code.javascript.
+              module.exports = {
+                entry: './src/entry.js',
+                output: {...},
+                module: {
+                  preLoaders: [
+                    {
+                      test: /\.js$/,
+                      exclude: /node_modules/,
+                      loader: 'jscs-loader'
+                    }, {
+                      test: /\.js$/,
+                      exclude: /node_modules/,
+                      loader: 'jshint-loader'
+                    }
+                  ],
+                  loaders: [...]
+                }
+              };
+          p.fragment.current-only(data-code-focus="5-15") Pre loaders get executen before loaders
+          p.fragment.current-only(data-code-focus="6-10") Enable jscs
+          p.fragment.current-only(data-code-focus="10-15") Enable jshint
