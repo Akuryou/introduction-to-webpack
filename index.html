@@ -1,25 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>An introduction to webpack</title><style>.line {
-  display: block
-}
-.line.focus {
-  background: #555;
-}
-.reveal .slides section .fragment.current-only {
-  opacity: 1;
-  visibility: visible;
-  display: none;
-}
-.reveal .slides section .fragment.current-only.current-fragment {
-  display: block;
-}
-.reveal section img {
-  border: none !important;
-}
-p.horizontal-flex {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;</style></head><body><div class="reveal"><div class="slides"><section><h2>An introduction to</h2><p><img src="57f13532423e9161a76b9cf814d708c7.png"></p><p><i>by Fabian Ihl</i></p></section><section><section><h2>What is webpack not?</h2><p class="fragment">Webpack is NOT a task runner</p><p class="fragment horizontal-flex"><img src="0ab17ed1317f1be43bcdfba2e0cc5fe2.png"><b style="font-size: 3em">&ne;</b><img src="b624f4e7c6bb6d52c6e4cecd3f847622.png"></p><p class="fragment">Will it replace my task runner?</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>Maybe...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><section><h2>What is webpack?</h2><blockquote class="fragment">"webpack is a module bundler."</blockquote><blockquote class="fragment">"webpack takes modules with dependencies and generates static assets representing those modules."</blockquote><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><img src="3de39c545cffc2548e49dda0993700e1.png"><i>(webpack.github.io)</i></section><section><p>It will resolve any kind of dependency ...</p><ul><li class="fragment">Scripts</li><li class="fragment">Templates</li><li class="fragment">Stylesheets</li><li class="fragment">Assets</li><li class="fragment">Fonts</li><li class="fragment">...</li></ul><p class="fragment">and bundle them into a final build</p></section><section><p>It will transpile / process</p><ul><li class="fragment">TypeScript</li><li class="fragment">CoffeeScript</li><li class="fragment">ES6</li><li class="fragment">Less</li><li class="fragment">Sass</li><li class="fragment">Stylus</li><li class="fragment">Pug (fka. Jade)</li><li class="fragment">...</li></ul></section><section><p>And do a lot more ...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Wait!</h2><p class="fragment">What is a module?</p><p class="fragment">How do I declare dependencies?</p></section><section><section><h3>A short detour about</h3><h2>CommonJS</h2><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>CommonJS is one of the supported module formats.</p><p class="fragment">(Others are AMD and ES6 Modules)</p></section><section><h3>Referencing a module</h3><pre class="fragment"><code class="javascript">var SomeModule = require('./SomeModule.js');
+<!DOCTYPE html><html lang="en"><head><title>An introduction to webpack</title></head><body><div class="reveal"><div class="slides"><section><h2>An introduction to</h2><p><img src="57f13532423e9161a76b9cf814d708c7.png"></p><p><i>by Fabian Ihl</i></p></section><section><section><h2>What is webpack not?</h2><p class="fragment">Webpack is NOT a task runner</p><p class="fragment horizontal-flex"><img src="0ab17ed1317f1be43bcdfba2e0cc5fe2.png"><b style="font-size: 3em">&ne;</b><img src="b624f4e7c6bb6d52c6e4cecd3f847622.png"></p><p class="fragment">Will it replace my task runner?</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>Maybe...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><section><h2>What is webpack?</h2><blockquote class="fragment">"webpack is a module bundler."</blockquote><blockquote class="fragment">"webpack takes modules with dependencies and generates static assets representing those modules."</blockquote><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><img src="3de39c545cffc2548e49dda0993700e1.png"><i>(webpack.github.io)</i></section><section><p>It will resolve any kind of dependency ...</p><ul><li class="fragment">Scripts</li><li class="fragment">Templates</li><li class="fragment">Stylesheets</li><li class="fragment">Assets</li><li class="fragment">Fonts</li><li class="fragment">...</li></ul><p class="fragment">and bundle them into a final build</p></section><section><p>It will transpile / process</p><ul><li class="fragment">TypeScript</li><li class="fragment">CoffeeScript</li><li class="fragment">ES6</li><li class="fragment">Less</li><li class="fragment">Sass</li><li class="fragment">Stylus</li><li class="fragment">Pug (fka. Jade)</li><li class="fragment">...</li></ul></section><section><p>And do a lot more ...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Wait!</h2><p class="fragment">What is a module?</p><p class="fragment">How do I declare dependencies?</p></section><section><section><h3>A short detour about</h3><h2>CommonJS</h2><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>CommonJS is one of the supported module formats.</p><p class="fragment">(Others are AMD and ES6 Modules)</p></section><section><h3>Referencing a module</h3><pre class="fragment"><code class="javascript">var SomeModule = require('./SomeModule.js');
 SomeModule.doAwesomeStuff();
 </code></pre><p class="fragment current-only" data-code-focus="1">"require" the module</p><p class="fragment current-only" data-code-focus="2">Use it</p></section><section><h3>Defining a module</h3><i>(MyModule.js)</i><pre class="fragment"><code class="javascript">module.exports = {
   doAwesomeStuff: function() {...}
@@ -134,6 +113,7 @@ module.exports = {
     loaders: [
       {test: /\.pug$/, loader: 'pug-loader'},
       {test: /\.css$/, loader: 'style!css'},
+      {test: /\.styl$/, loader: 'style!css!stylus'},
       {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
@@ -177,4 +157,4 @@ module.exports = {
     host: '0.0.0.0',
   },
 };
-</code></pre></section><section><h1>Thank you</h1></section><section><h1>Questions ?</h1><hr><p>View this presentation at:</p><p><a href="http://akuryou.github.io/introduction-to-webpack">akuryou.github.io/introduction-to-webpack</a></p><p>Clone it, fork it at:</p><p><a href="https://github.com/akuryou/introduction-to-webpack">github.com/akuryou/introduction-to-webpack</a></p></section></div></div><script type="text/javascript" src="common-4cd225c8a8f76791ba9d.js"></script><script type="text/javascript" src="entry-4cd225c8a8f76791ba9d.js"></script><script type="text/javascript" src="vendor-4cd225c8a8f76791ba9d.js"></script></body></html>
+</code></pre></section><section><h1>Thank you</h1></section><section><h1>Questions ?</h1><hr><p>View this presentation at:</p><p><a href="http://akuryou.github.io/introduction-to-webpack">akuryou.github.io/introduction-to-webpack</a></p><p>Clone it, fork it at:</p><p><a href="https://github.com/akuryou/introduction-to-webpack">github.com/akuryou/introduction-to-webpack</a></p></section></div></div><script type="text/javascript" src="common-b2027065782faba70d94.js"></script><script type="text/javascript" src="entry-b2027065782faba70d94.js"></script><script type="text/javascript" src="vendor-b2027065782faba70d94.js"></script></body></html>
