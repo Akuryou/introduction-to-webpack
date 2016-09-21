@@ -2,9 +2,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    './src/entry.js',
-  ],
+  entry: {
+    'entry': './src/entry.js',
+    'vendor': './src/vendor.js',
+  },
   resolve: {
     root: __dirname,
   },
@@ -39,6 +40,10 @@ module.exports = {
     new HtmlWebpackPlugin({ template: 'src/index.pug', }),
     new webpack.optimize.DedupePlugin(), // removes duplicate code
     new webpack.optimize.OccurrenceOrderPlugin(true), // optimises size
+    new webpack.optimize.CommonsChunkPlugin({
+      filename: '[name]-[hash].js',
+      name: 'common'
+    }),
   ],
   jscs: {
     preset: 'airbnb',
