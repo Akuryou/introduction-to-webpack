@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: './build',
-    filename: 'bundle-[hash].js'
+    filename: '[name]-[hash].js'
   },
   module: {
     preLoaders: [
