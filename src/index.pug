@@ -139,3 +139,43 @@ html(lang="en")
                 })();
           section
             p: i.fa.fa-arrow-right.fa-3x
+        section
+          section
+            h2 Require other stuff
+            h4 in javascript files
+            pre.fragment
+              code.
+                var data = require('someData.json');
+            p.fragment Will load the json data and convert them to an object.
+            pre.fragment
+              code.
+                var template = require('template.html');
+            p.fragment Will return the template as strig or template funtion
+            pre.fragment
+              code.
+                require('prettyStyles.css');
+            p.fragment
+              = 'Will inject the css as style block into the <head> section'
+            p.fragment: i.fa.fa-arrow-down.fa-3x
+          section
+            p Such files will usualy be bundled into the corresponding js bundle saving additional http requests.
+          section
+            h4 Require in css files
+            pre.fragment
+              code.css.
+                .button-delete {
+                  backgroundimage: url('./assets/deleteIcon.png');
+
+                }
+            p.fragment Will...
+              ul
+                li.fragment Discover the png file
+                li.fragment Copy it into the dist folder using a hash as name
+                li.fragment Replace the url() with the calculated hash
+          section
+            h4 The same works in templates
+            pre.fragment
+              code
+                = '<img src=require("./assets/someImage.png")/>'
+          section
+            p: i.fa.fa-arrow-right.fa-3x
