@@ -196,3 +196,24 @@ html(lang="en")
           p.fragment.current-only(data-code-focus="3-6") Output config
           p.fragment.current-only(data-code-focus="4") Output folder
           p.fragment.current-only(data-code-focus="5") Name of your final js bundle, with cache busting enabled
+        section
+          h2 Handling non js files using loaders
+          pre.fragment
+            code.javascript.
+              module.exports = {
+                entry: './src/entry.js',
+                output: {
+                  path: './build/',
+                  filename: '[name]-[hash].js'
+                },
+                module: {
+                  loaders: [
+                    {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
+                    {test: /\.css$/, loader: 'style!css'},
+                  ]
+                }
+              };
+          p.fragment.current-only(data-code-focus="7-12") Loaders are defined in the module section, they tell webpack how to recognize and handle files.
+          p.fragment.current-only(data-code-focus="9") Handling assets using the file-loader.
+          p.fragment.current-only(data-code-focus="10") Loaders can be used as pipes.
+          p.fragment There are loaders for almost everything out there.
