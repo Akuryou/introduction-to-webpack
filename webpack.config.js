@@ -44,6 +44,12 @@ module.exports = {
       filename: '[name]-[hash].js',
       name: 'common'
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      mangle: false,
+      compress: { screw_ie8: true },
+      comments: false,
+    })
   ],
   jscs: {
     preset: 'airbnb',
