@@ -80,3 +80,62 @@ html(lang="en")
           section
             p And do a lot more ...
             p.fragment: i.fa.fa-arrow-right.fa-3x
+        section
+          h2 Wait!
+          p.fragment What is a module?
+          p.fragment How do I declare dependencies?
+        section
+          section
+            h3 A short detour about
+            h2 CommonJS
+            p.fragment: i.fa.fa-arrow-down.fa-3x
+          section
+            p CommonJS is one of the supported module formats.
+            p.fragment (Others are AMD and ES6 Modules)
+          section
+            h3 Referencing a module
+            pre.fragment
+              code.javascript.
+                var SomeModule = require('./SomeModule.js');
+                SomeModule.doAwesomeStuff();
+
+            p.fragment.current-only(data-code-focus="1") "require" the module
+            p.fragment.current-only(data-code-focus="2") Use it
+          section
+            h3 Defining a module
+            i (MyModule.js)
+            pre.fragment
+              code.javascript.
+                module.exports = {
+                  doAwesomeStuff: function() {...}
+                }
+          section
+            h3 limiting access
+            i (MyModule.js)
+            pre.fragment
+              code.javascript.
+                function somePrivateMethod() {...}
+
+                function doAwesomeStuff() {...}
+
+                module.exports =  {
+                  doAwesomeStuff: doAwesomeStuff
+                }
+
+            p.fragment.current-only(data-code-focus="1") not exported
+            p.fragment.current-only(data-code-focus="3-7") exported
+          section
+            h3 Use closures and be strict!
+            i (MyModule.js)
+            pre.fragment
+              code.javascript.
+                (function() {
+                  'use strict';
+
+                  module.exports = {
+                    doAwesomeStuff: function() {...}
+                  }
+
+                })();
+          section
+            p: i.fa.fa-arrow-right.fa-3x
