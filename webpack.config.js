@@ -28,6 +28,7 @@ module.exports = {
     loaders: [
       {test: /\.pug$/, loader: 'pug-loader'},
       {test: /\.css$/, loader: 'style!css'},
+      {test: /\.styl$/, loader: 'style!css!stylus'},
       {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},

@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  require('./styles.styl');
+
   setTimeout(function() {
     window.Reveal.initialize({
       transition: 'convex',
