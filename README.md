@@ -2,16 +2,16 @@
 
 Presentation and sample
 
-## Presentation
+watch at https://akuryou.github.io/introduction-to-webpack
 
-### Setup
+## Setup
 
     npm install
 
-### Dev server
+## Dev server
 
     npm start
 
-### Build
+## Build
 
     npm run build
