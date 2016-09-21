@@ -258,3 +258,40 @@ html(lang="en")
           pre.fragment
             code.shell $ webpack-dev-server
           p.fragment Will look for webpack.config.js and launch a dev server with auto reload
+        section
+          section
+            h2 Chunks
+            p Splitting bundles
+            pre.fragment
+              code.javascript.
+                var webpack = require('webpack');
+
+                module.exports = {
+                  entry: {
+                    'app': './src/app.js',
+                    'vendor': './src/vendor.js',
+                  },
+                  output: {
+                    path: './build/',
+                    filename: '[name]-[hash].js'
+                  },
+                  module: {...},
+                  plugins: [
+                    new webpack.optimize.CommonsChunkPlugin({
+                      filename: "[name]-[hash].js",
+                      name: "common"
+                    }),
+                  ]
+                };
+            p.fragment.current-only(data-code-focus="4-7") Define multiple entry points
+            p.fragment.current-only(data-code-focus="14-17") Use the CommonsChunkPlugin to build a chunk with common code
+            p.fragment: i.fa.fa-arrow-down.fa-3x
+          section
+            p Thi will create:
+            ul.fragment
+              li index.html
+              li common-00d6787913610ea5ba02.js
+              li vendor-00d6787913610ea5ba02.js
+              li app-00d6787913610ea5ba02.js
+          section
+            p: i.fa.fa-arrow-right.fa-3x
