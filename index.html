@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>An introduction to webpack</title></head><body><div class="reveal"><div class="slides"><section><h2>An introduction to</h2><p><img src="57f13532423e9161a76b9cf814d708c7.png"></p><p><i>by Fabian Ihl</i></p></section><section><section><h2>What is webpack not?</h2><p class="fragment">Webpack is NOT a task runner</p><p class="fragment horizontal-flex"><img src="0ab17ed1317f1be43bcdfba2e0cc5fe2.png"><b style="font-size: 3em">&ne;</b><img src="b624f4e7c6bb6d52c6e4cecd3f847622.png"></p><p class="fragment">Will it replace my task runner?</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>Maybe...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><section><h2>What is webpack?</h2><blockquote class="fragment">"webpack is a module bundler."</blockquote><blockquote class="fragment">"webpack takes modules with dependencies and generates static assets representing those modules."</blockquote><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><img src="3de39c545cffc2548e49dda0993700e1.png"><i>(webpack.github.io)</i></section><section><p>It will resolve any kind of dependency ...</p><ul><li class="fragment">Scripts</li><li class="fragment">Templates</li><li class="fragment">Stylesheets</li><li class="fragment">Assets</li><li class="fragment">Fonts</li><li class="fragment">...</li></ul><p class="fragment">and bundle them into a final build</p></section><section><p>It will transpile / process</p><ul><li class="fragment">TypeScript</li><li class="fragment">CoffeeScript</li><li class="fragment">ES6</li><li class="fragment">Less</li><li class="fragment">Sass</li><li class="fragment">Stylus</li><li class="fragment">Pug (fka. Jade)</li><li class="fragment">...</li></ul></section><section><p>And do a lot more ...</p><p class="fragment"><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Wait!</h2><p class="fragment">What is a module?</p><p class="fragment">How do I declare dependencies?</p></section><section><section><h3>A short detour about</h3><h2>CommonJS</h2><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>CommonJS is one of the supported module formats.</p><p class="fragment">(Others are AMD and ES6 Modules)</p></section><section><h3>Referencing a module</h3><pre class="fragment"><code class="javascript">var SomeModule = require('./SomeModule.js');
+<!DOCTYPE html><html lang="en"><head><title>An introduction to webpack</title></head><body><div class="reveal"><div class="slides"><section><h2>An introduction to</h2><p><img src="57f13532423e9161a76b9cf814d708c7.png"></p><p><i>by Fabian Ihl</i></p></section><section><section><h2>What is webpack not?</h2><p class="fragment">Webpack is NOT a task runner</p><p class="fragment horizontal-flex"><img src="0ab17ed1317f1be43bcdfba2e0cc5fe2.png"><b style="font-size: 3em">&ne;</b><img src="b624f4e7c6bb6d52c6e4cecd3f847622.png"></p><p class="fragment">Will it replace my task runner?</p></section><section><p>Maybe...</p></section></section><section><section><h2>What is webpack?</h2><blockquote class="fragment">"webpack is a module bundler."</blockquote><blockquote class="fragment">"webpack takes modules with dependencies and generates static assets representing those modules."</blockquote></section><section><img src="3de39c545cffc2548e49dda0993700e1.png"><i>(webpack.github.io)</i></section><section><p>It will resolve any kind of dependency ...</p><ul class="fragment"><li>Scripts</li><li>Templates</li><li>Stylesheets</li><li>Assets</li><li>Fonts</li><li>fragment ...</li></ul><p class="fragment">and bundle them into a final build</p></section><section><p>It will transpile / process</p><ul class="fragment"><li>TypeScript</li><li>CoffeeScript</li><li>ES6</li><li>Less</li><li>Sass</li><li>Stylus</li><li>Pug (fka. Jade)</li><li>...</li></ul></section><section><p>And do a lot more ...</p></section></section><section><h2>Wait!</h2><p class="fragment">What is a module?</p><p class="fragment">How do I declare dependencies?</p></section><section><section><h3>A short detour about</h3><h2>CommonJS</h2></section><section><p>CommonJS is one of the supported module formats.</p><p class="fragment">(Others are AMD and ES6 Modules)</p></section><section><h3>Referencing a module</h3><pre class="fragment"><code class="javascript">var SomeModule = require('./SomeModule.js');
 SomeModule.doAwesomeStuff();
 </code></pre><p class="fragment current-only" data-code-focus="1">"require" the module</p><p class="fragment current-only" data-code-focus="2">Use it</p></section><section><h3>Defining a module</h3><i>(MyModule.js)</i><pre class="fragment"><code class="javascript">module.exports = {
   doAwesomeStuff: function() {...}
@@ -16,10 +16,10 @@ module.exports =  {
     doAwesomeStuff: function() {...}
   }
 
-})();</code></pre></section><section><p><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><section><h2>Require other stuff</h2><h4>in javascript files</h4><pre class="fragment"><code>var data = require('someData.json');</code></pre><p class="fragment">Will load the json data and convert them to an object.</p><pre class="fragment"><code>var template = require('template.html');</code></pre><p class="fragment">Will return the template as string or template funtion</p><pre class="fragment"><code>require('prettyStyles.css');</code></pre><p class="fragment">Will inject the css as style block into the &lt;head&gt; section</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>Such files will usualy be bundled into the corresponding js bundle saving additional http requests.</p></section><section><h4>Require in css files</h4><pre class="fragment"><code class="css">.button-delete {
+})();</code></pre></section></section><section><section><h2>Require other stuff</h2><h4>in javascript files</h4><pre class="fragment"><code>var data = require('someData.json');</code></pre><p class="fragment">Will load the json data and convert them to an object.</p><pre class="fragment"><code>var template = require('template.html');</code></pre><p class="fragment">Will return the template as string or template funtion</p><pre class="fragment"><code>require('prettyStyles.css');</code></pre><p class="fragment">Will inject the css as style block into the &lt;head&gt; section</p></section><section><p>Such files will usualy be bundled into the corresponding js bundle saving additional http requests.</p></section><section><h4>Require in css files</h4><pre class="fragment"><code class="css">.button-delete {
   backgroundimage: url('./assets/deleteIcon.png');
 
-}</code></pre><p class="fragment">Will...<ul><li class="fragment">Discover the png file</li><li class="fragment">Copy it into the dist folder using a hash as name</li><li class="fragment">Replace the url() with the calculated hash</li></ul></p></section><section><h4>The same works in templates</h4><pre class="fragment"><code>&lt;img src=require(&quot;./assets/someImage.png&quot;)/&gt;</code></pre></section><section><p><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Minimal configuration</h2><i>(webpack.config.js)</i><pre class="fragment"><code class="javascript">module.exports = {
+}</code></pre><p class="fragment">Will...<ul><li class="fragment">Discover the png file</li><li class="fragment">Copy it into the dist folder using a hash as name</li><li class="fragment">Replace the url() with the calculated hash</li></ul></p></section><section><h4>The same works in templates</h4><pre class="fragment"><code>&lt;img src=require(&quot;./assets/someImage.png&quot;)/&gt;</code></pre></section><section><b>&lt; imagine funny gif here /&gt;</b></section></section><section><h2>Minimal configuration</h2><i>(webpack.config.js)</i><pre class="fragment"><code class="javascript">module.exports = {
   entry: './src/entry.js',
   output: {
     path: './build/',
@@ -37,7 +37,7 @@ module.exports =  {
       {test: /\.css$/, loader: 'style!css'},
     ]
   }
-};</code></pre><p class="fragment current-only" data-code-focus="7-12">Loaders are defined in the module section, they tell webpack how to recognize and handle files.</p><p class="fragment current-only" data-code-focus="9">Handling assets using the file-loader.</p><p class="fragment current-only" data-code-focus="10">Loaders can be used as pipes.</p><p class="fragment">There are loaders for almost everything out there.</p></section><section><section><h2>Special case</h2><b>index.html</b><p class="fragment">Entrypoint will always be a js file.</p><p class="fragment">How do we tell wepack to handle our index template?</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><b>HtmlWebpackPlugin to the rescue</b><pre class="fragment"><code class="javascript">var HtmlWebpackPlugin = require('html-webpack-plugin');
+};</code></pre><p class="fragment current-only" data-code-focus="7-12">Loaders are defined in the module section, they tell webpack how to recognize and handle files.</p><p class="fragment current-only" data-code-focus="9">Handling assets using the file-loader.</p><p class="fragment current-only" data-code-focus="10">Loaders can be used as pipes.</p><p class="fragment">There are loaders for almost everything out there.</p></section><section><section><h2>Special case</h2><b>index.html</b><p class="fragment">Entrypoint will always be a js file.</p><p class="fragment">How do we tell wepack to handle our index template?</p></section><section><b>HtmlWebpackPlugin to the rescue</b><pre class="fragment"><code class="javascript">var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: '/src/entry.js',
@@ -48,7 +48,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html', }),
   ]
-};</code></pre><p class="fragment current-only" data-code-focus="1">Require the plugin</p><p class="fragment current-only" data-code-focus="9-11">Plugin section</p><p class="fragment" data-code-focus="10">HtmlWebpackPlugin will ...</p><ul class="fragment"><li>Copy index.html into the output folder</li><li>Inject all bundles as script tags</li></ul></section><section><p><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Running webpack</h2><h3 class="fragment">Build</h3><pre class="fragment"><code class="shell">$ webpack</code></pre><p class="fragment">Will look for webpack.config.js and build your app as configured</p><h3 class="fragment">Development</h3><pre class="fragment"><code class="shell">$ webpack-dev-server</code></pre><p class="fragment">Will look for webpack.config.js and launch a dev server with auto reload</p></section><section><section><h2>Chunks</h2><p>Splitting bundles</p><pre class="fragment"><code class="javascript">var webpack = require('webpack');
+};</code></pre><p class="fragment current-only" data-code-focus="1">Require the plugin</p><p class="fragment current-only" data-code-focus="9-11">Plugin section</p><p class="fragment" data-code-focus="10">HtmlWebpackPlugin will ...</p><ul class="fragment"><li>Copy index.html into the output folder</li><li>Inject all bundles as script tags</li></ul></section></section><section><h2>Running webpack</h2><h3 class="fragment">Build</h3><pre class="fragment"><code class="shell">$ webpack</code></pre><p class="fragment">Will look for webpack.config.js and build your app as configured</p><h3 class="fragment">Development</h3><pre class="fragment"><code class="shell">$ webpack-dev-server</code></pre><p class="fragment">Will look for webpack.config.js and launch a dev server with auto reload</p></section><section><section><h2>Chunks</h2><p>Splitting bundles</p><pre class="fragment"><code class="javascript">var webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -66,7 +66,7 @@ module.exports = {
       name: "common"
     }),
   ]
-};</code></pre><p class="fragment current-only" data-code-focus="4-7">Define multiple entry points</p><p class="fragment current-only" data-code-focus="14-17">Use the CommonsChunkPlugin to build a chunk with common code</p><p class="fragment"><i class="fa fa-arrow-down fa-3x"></i></p></section><section><p>This will create:</p><ul class="fragment"><li>index.html</li><li>common-00d6787913610ea5ba02.js</li><li>vendor-00d6787913610ea5ba02.js</li><li>app-00d6787913610ea5ba02.js</li></ul></section><section><p><i class="fa fa-arrow-right fa-3x"></i></p></section></section><section><h2>Linting</h2><pre class="fragment"><code class="javascript">module.exports = {
+};</code></pre><p class="fragment current-only" data-code-focus="4-7">Define multiple entry points</p><p class="fragment current-only" data-code-focus="14-17">Use the CommonsChunkPlugin to build a chunk with common code</p></section><section><p>This will create:</p><ul class="fragment"><li>index.html</li><li>common-00d6787913610ea5ba02.js</li><li>vendor-00d6787913610ea5ba02.js</li><li>app-00d6787913610ea5ba02.js</li></ul></section></section><section><h2>Linting</h2><pre class="fragment"><code class="javascript">module.exports = {
   entry: './src/entry.js',
   output: {...},
   module: {
@@ -83,7 +83,7 @@ module.exports = {
     ],
     loaders: [...]
   }
-};</code></pre><p class="fragment current-only" data-code-focus="5-15">Pre loaders get executen before loaders</p><p class="fragment current-only" data-code-focus="6-10">Enable jscs</p><p class="fragment current-only" data-code-focus="10-15">Enable jshint</p></section><section><h2>Full sample</h2><p>For a full sample have a look at the config of this presentation:</p><pre><code>var HtmlWebpackPlugin = require('html-webpack-plugin');
+};</code></pre><p class="fragment current-only" data-code-focus="5-15">Pre loaders get executen before loaders</p><p class="fragment current-only" data-code-focus="6-10">Enable jscs</p><p class="fragment current-only" data-code-focus="10-15">Enable jshint</p></section><section><h2>Testing</h2><div class="fragment"><p>Have a look at karma-webpack</p><p><a href="https://github.com/webpack/karma-webpack">https://github.com/webpack/karma-webpack</a></p></div></section><section><section><h2>Full sample</h2><p>For a full sample have a look at the config of this presentation:</p></section><section><i>(webpack.config.js)</i><pre><code>var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
@@ -129,12 +129,6 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       filename: '[name]-[hash].js',
       name: 'common'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: false,
-      compress: { screw_ie8: true },
-      comments: false,
     })
   ],
   jscs: {
@@ -157,4 +151,15 @@ module.exports = {
     host: '0.0.0.0',
   },
 };
-</code></pre></section><section><h1>Thank you</h1></section><section><h1>Questions ?</h1><hr><p>View this presentation at:</p><p><a href="http://akuryou.github.io/introduction-to-webpack">akuryou.github.io/introduction-to-webpack</a></p><p>Clone it, fork it at:</p><p><a href="https://github.com/akuryou/introduction-to-webpack">github.com/akuryou/introduction-to-webpack</a></p></section></div></div><script type="text/javascript" src="common-b2027065782faba70d94.js"></script><script type="text/javascript" src="entry-b2027065782faba70d94.js"></script><script type="text/javascript" src="vendor-b2027065782faba70d94.js"></script></body></html>
+</code></pre></section><section><i>(webpack.production.js)</i><pre><code>const webpack = require('webpack');
+const base = require('./webpack.config');
+
+base.plugins.push(new webpack.optimize.UglifyJsPlugin({
+  beautify: false,
+  mangle: false,
+  compress : { screw_ie8 : true },
+  comments: false,
+}));
+
+module.exports = base;
+</code></pre></section></section><section><h1>Thank you</h1></section><section><h1>Questions ?</h1><hr><p>View this presentation at:</p><p><a href="http://akuryou.github.io/introduction-to-webpack">akuryou.github.io/introduction-to-webpack</a></p><p>Clone it, fork it at:</p><p><a href="https://github.com/akuryou/introduction-to-webpack">github.com/akuryou/introduction-to-webpack</a></p></section></div></div><script type="text/javascript" src="common-6cb767f2548ada4bfd46.js"></script><script type="text/javascript" src="entry-6cb767f2548ada4bfd46.js"></script><script type="text/javascript" src="vendor-6cb767f2548ada4bfd46.js"></script></body></html>
