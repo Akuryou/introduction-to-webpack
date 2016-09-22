@@ -5,7 +5,7 @@
 
   setTimeout(function() {
     window.Reveal.initialize({
-      transition: 'convex',
+      transition: 'fade',
       history: true,
     });
     require('script!reveal-code-focus');
