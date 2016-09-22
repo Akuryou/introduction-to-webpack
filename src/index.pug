@@ -20,16 +20,13 @@ html(lang="en")
               b(style="font-size: 3em") &ne;
               img(src=require("./assets/gulp-grunt.png"))
             p.fragment Will it replace my task runner?
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             p Maybe...
-            p.fragment: i.fa.fa-arrow-right.fa-3x
         section
           section
             h2 What is webpack?
             blockquote.fragment "webpack is a module bundler."
             blockquote.fragment "webpack takes modules with dependencies and generates static assets representing those modules."
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             img(src=require("./assets/what-is-webpack.png"))
             i (webpack.github.io)
@@ -56,7 +53,6 @@ html(lang="en")
               li.fragment ...
           section
             p And do a lot more ...
-            p.fragment: i.fa.fa-arrow-right.fa-3x
         section
           h2 Wait!
           p.fragment What is a module?
@@ -65,7 +61,6 @@ html(lang="en")
           section
             h3 A short detour about
             h2 CommonJS
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             p CommonJS is one of the supported module formats.
             p.fragment (Others are AMD and ES6 Modules)
@@ -114,8 +109,6 @@ html(lang="en")
                   }
 
                 })();
-          section
-            p: i.fa.fa-arrow-right.fa-3x
         section
           section
             h2 Require other stuff
@@ -133,7 +126,6 @@ html(lang="en")
                 require('prettyStyles.css');
             p.fragment
               = 'Will inject the css as style block into the <head> section'
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             p Such files will usualy be bundled into the corresponding js bundle saving additional http requests.
           section
@@ -154,8 +146,6 @@ html(lang="en")
             pre.fragment
               code
                 = '<img src=require("./assets/someImage.png")/>'
-          section
-            p: i.fa.fa-arrow-right.fa-3x
         section
           h2 Minimal configuration
           i (webpack.config.js)
@@ -200,7 +190,6 @@ html(lang="en")
             b index.html
             p.fragment Entrypoint will always be a js file.
             p.fragment How do we tell wepack to handle our index template?
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             b HtmlWebpackPlugin to the rescue
             pre.fragment
@@ -223,8 +212,6 @@ html(lang="en")
             ul.fragment
               li Copy index.html into the output folder
               li Inject all bundles as script tags
-          section
-            p: i.fa.fa-arrow-right.fa-3x
         section
           h2 Running webpack
           h3.fragment Build
@@ -262,7 +249,6 @@ html(lang="en")
                 };
             p.fragment.current-only(data-code-focus="4-7") Define multiple entry points
             p.fragment.current-only(data-code-focus="14-17") Use the CommonsChunkPlugin to build a chunk with common code
-            p.fragment: i.fa.fa-arrow-down.fa-3x
           section
             p This will create:
             ul.fragment
@@ -270,8 +256,6 @@ html(lang="en")
               li common-00d6787913610ea5ba02.js
               li vendor-00d6787913610ea5ba02.js
               li app-00d6787913610ea5ba02.js
-          section
-            p: i.fa.fa-arrow-right.fa-3x
         section
           h2 Linting
           pre.fragment
