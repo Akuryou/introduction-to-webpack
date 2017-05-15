@@ -1,4 +1,4 @@
-# An introduction to webpack
+# An introduction to webpack 2
 
 Presentation and sample
 
