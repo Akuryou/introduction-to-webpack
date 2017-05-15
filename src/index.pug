@@ -220,21 +220,22 @@ html(lang="en")
             b HtmlWebpackPlugin to the rescue
             pre.fragment
               code.javascript.
-                var HtmlWebpackPlugin = require('html-webpack-plugin');
+                const HtmlWebpackPlugin = require('html-webpack-plugin');
+                const path = require('path');
 
                 module.exports = {
-                  entry: '/src/entry.js',
+                  entry: './app/index.js',
                   output: {
-                    path: './build/',
-                    filename: '[name]-[hash].js'
+                    filename: 'bundle[chunkhash].js',
+                    path: path.resolve(__dirname, 'dist'),
                   },
                   plugins: [
                     new HtmlWebpackPlugin({ template: './src/index.html', }),
                   ]
                 };
             p.fragment.current-only(data-code-focus="1") Require the plugin
-            p.fragment.current-only(data-code-focus="9-11") Plugin section
-            p.fragment(data-code-focus="10") HtmlWebpackPlugin will ...
+            p.fragment.current-only(data-code-focus="10-12") Plugin section
+            p.fragment(data-code-focus="11") HtmlWebpackPlugin will ...
             ul.fragment
               li Copy index.html into the output folder
               li Inject all bundles as script tags
