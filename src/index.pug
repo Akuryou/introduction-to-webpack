@@ -172,18 +172,21 @@ html(lang="en")
           i (webpack.config.js)
           pre.fragment
             code.javascript.
+              const path = require('path');
+
               module.exports = {
-                entry: './src/entry.js',
+                entry: './app/index.js',
                 output: {
-                  path: './build/',
-                  filename: '[name]-[hash].js'
-                }
+                  filename: 'bundle[chunkhash].js',
+                  path: path.resolve(__dirname, 'dist'),
+                },
               };
-          p.fragment.current-only(data-code-focus="1") (Yes, it's a module, too)
-          p.fragment.current-only(data-code-focus="2") Your main script file as entry point.
-          p.fragment.current-only(data-code-focus="3-6") Output config
-          p.fragment.current-only(data-code-focus="4") Output folder
-          p.fragment.current-only(data-code-focus="5") Name of your final js bundle, with cache busting enabled
+
+          p.fragment.current-only(data-code-focus="3") (Yes, it's a module, too)
+          p.fragment.current-only(data-code-focus="4") Your main script file as entry point.
+          p.fragment.current-only(data-code-focus="5-8") Output config
+          p.fragment.current-only(data-code-focus="6") Name of your final js bundle, with cache busting enabled
+          p.fragment.current-only(data-code-focus="7") Output folder
         section
           h2 Handling non js files using loaders
           pre.fragment
