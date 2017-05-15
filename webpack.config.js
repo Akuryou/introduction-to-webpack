@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
@@ -7,7 +8,10 @@ module.exports = {
     'vendor': './src/vendor.js',
   },
   resolve: {
-    root: __dirname,
+    modules: [
+      'node_modules',
+      path.join(__dirname, 'src'),
+    ]
   },
   output: {
     path: './build',
