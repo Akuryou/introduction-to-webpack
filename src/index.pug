@@ -8,7 +8,7 @@ html(lang="en")
         section
           h2 An introduction to
           p
-            img(src=require("./assets/wp-logo-text.png"))
+            img(src=require("./assets/wp-logo-text.svg"))
           p
             i by Fabian Ihl
         section
@@ -16,7 +16,7 @@ html(lang="en")
             h2 What is webpack not?
             p.fragment Webpack is NOT a task runner
             p.fragment.horizontal-flex
-              img(src=require("./assets/wp-logo.png"))
+              img(src=require("./assets/wp-logo.svg"))
               b(style="font-size: 3em") &ne;
               img(src=require("./assets/gulp-grunt.png"))
             p.fragment Will it replace my task runner?
@@ -25,10 +25,9 @@ html(lang="en")
         section
           section
             h2 What is webpack?
-            blockquote.fragment "webpack is a module bundler."
-            blockquote.fragment "webpack takes modules with dependencies and generates static assets representing those modules."
+            blockquote.fragment "Webpack is a module bundler for modern JavaScript applications"
           section
-            img(src=require("./assets/what-is-webpack.png"))
+            img(src=require("./assets/what-is-webpack.svg"))
             i (webpack.github.io)
           section
             p It will resolve any kind of dependency ...
@@ -59,23 +58,21 @@ html(lang="en")
           p.fragment How do I declare dependencies?
         section
           section
-            h3 A short detour about
-            h2 CommonJS
+            h3 A short detour about Modules
+            p.fragment Supported are CommonJS, AMD and ES2015 imports
           section
-            p CommonJS is one of the supported module formats.
-            p.fragment (Others are AMD and ES6 Modules)
+            h2 CommonJS
           section
             h3 Referencing a module
             pre.fragment
               code.javascript.
-                var SomeModule = require('./SomeModule.js');
+                var SomeModule = require('./some-module.js');
                 SomeModule.doAwesomeStuff();
 
             p.fragment.current-only(data-code-focus="1") "require" the module
             p.fragment.current-only(data-code-focus="2") Use it
           section
             h3 Defining a module
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 module.exports = {
@@ -83,7 +80,6 @@ html(lang="en")
                 }
           section
             h3 limiting access
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 function somePrivateMethod() {...}
@@ -98,7 +94,6 @@ html(lang="en")
             p.fragment.current-only(data-code-focus="3-7") exported
           section
             h3 Use closures and be strict!
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 (function() {
@@ -109,20 +104,44 @@ html(lang="en")
                   }
 
                 })();
+          section
+            h2 ES2015 module import
+          section
+            h3 Importing
+            pre.fragment
+              code.javascript.
+                import {myMember} from 'my-module';
+
+                import {foo, bar} from 'my-module';
+
+                import {longModuleMemberName as shortName} from 'my-module';
+
+            p.fragment.current-only(data-code-focus="1") Import one member
+            p.fragment.current-only(data-code-focus="3") Import multiple members
+            p.fragment.current-only(data-code-focus="5") Use aliases
+          section
+            h3 Defining a module
+            pre.fragment
+              code.javascript.
+                function somePrivateMethod() {...}
+
+                export function doAwesomeStuff() {...}
+            p.fragment
+              a(href="https://developer.mozilla.org//en-US/docs/Web/JavaScript/Reference/Statements/import") See official documentation
         section
           section
             h2 Require other stuff
             h4 in javascript files
             pre.fragment
-              code.
+              code.javascript.
                 var data = require('someData.json');
             p.fragment Will load the json data and convert them to an object.
             pre.fragment
-              code.
+              code.javascript.
                 var template = require('template.html');
             p.fragment Will return the template as string or template funtion
             pre.fragment
-              code.
+              code.javascript.
                 require('prettyStyles.css');
             p.fragment
               = 'Will inject the css as style block into the <head> section'
@@ -134,8 +153,8 @@ html(lang="en")
               code.css.
                 .button-delete {
                   backgroundimage: url('./assets/deleteIcon.png');
-
                 }
+
             p.fragment Will...
               ul
                 li.fragment Discover the png file
@@ -153,38 +172,43 @@ html(lang="en")
           i (webpack.config.js)
           pre.fragment
             code.javascript.
+              const path = require('path');
+
               module.exports = {
-                entry: './src/entry.js',
+                entry: './app/index.js',
                 output: {
-                  path: './build/',
-                  filename: '[name]-[hash].js'
-                }
+                  filename: 'bundle[chunkhash].js',
+                  path: path.resolve(__dirname, 'dist'),
+                },
               };
-          p.fragment.current-only(data-code-focus="1") (Yes, it's a module, too)
-          p.fragment.current-only(data-code-focus="2") Your main script file as entry point.
-          p.fragment.current-only(data-code-focus="3-6") Output config
-          p.fragment.current-only(data-code-focus="4") Output folder
-          p.fragment.current-only(data-code-focus="5") Name of your final js bundle, with cache busting enabled
+
+          p.fragment.current-only(data-code-focus="3") (Yes, it's a module, too)
+          p.fragment.current-only(data-code-focus="4") Your main script file as entry point.
+          p.fragment.current-only(data-code-focus="5-8") Output config
+          p.fragment.current-only(data-code-focus="6") Name of your final js bundle, with cache busting enabled
+          p.fragment.current-only(data-code-focus="7") Output folder
         section
-          h2 Handling non js files using loaders
+          h3 Handling non js files using loaders
           pre.fragment
             code.javascript.
+              const path = require('path');
+
               module.exports = {
-                entry: './src/entry.js',
+                entry: './app/index.js',
                 output: {
-                  path: './build/',
-                  filename: '[name]-[hash].js'
+                  filename: 'bundle[chunkhash].js',
+                  path: path.resolve(__dirname, 'dist'),
                 },
                 module: {
-                  loaders: [
-                    {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
-                    {test: /\.css$/, loader: 'style!css'},
-                  ]
-                }
+                  rules: [
+                    {test: /\.(jpe?g|png|gif|svg)$/i, use: ['file-loader']},
+                    {test: /\.css$/, use: ['style-loader', 'css-loader']},
+                  ],
+                },
               };
-          p.fragment.current-only(data-code-focus="7-12") Loaders are defined in the module section, they tell webpack how to recognize and handle files.
-          p.fragment.current-only(data-code-focus="9") Handling assets using the file-loader.
-          p.fragment.current-only(data-code-focus="10") Loaders can be used as pipes.
+          p.fragment.current-only(data-code-focus="9-14") Loaders are defined in the module section, they tell webpack how to recognize and handle files.
+          p.fragment.current-only(data-code-focus="11") Handling assets using the file-loader.
+          p.fragment.current-only(data-code-focus="12") Loaders can be chained.
           p.fragment There are loaders for almost everything out there.
         section
           section
@@ -196,21 +220,22 @@ html(lang="en")
             b HtmlWebpackPlugin to the rescue
             pre.fragment
               code.javascript.
-                var HtmlWebpackPlugin = require('html-webpack-plugin');
+                const HtmlWebpackPlugin = require('html-webpack-plugin');
+                const path = require('path');
 
                 module.exports = {
-                  entry: '/src/entry.js',
+                  entry: './app/index.js',
                   output: {
-                    path: './build/',
-                    filename: '[name]-[hash].js'
+                    filename: 'bundle[chunkhash].js',
+                    path: path.resolve(__dirname, 'dist'),
                   },
                   plugins: [
                     new HtmlWebpackPlugin({ template: './src/index.html', }),
                   ]
                 };
             p.fragment.current-only(data-code-focus="1") Require the plugin
-            p.fragment.current-only(data-code-focus="9-11") Plugin section
-            p.fragment(data-code-focus="10") HtmlWebpackPlugin will ...
+            p.fragment.current-only(data-code-focus="10-12") Plugin section
+            p.fragment(data-code-focus="11") HtmlWebpackPlugin will ...
             ul.fragment
               li Copy index.html into the output folder
               li Inject all bundles as script tags
@@ -230,7 +255,8 @@ html(lang="en")
             p Splitting bundles
             pre.fragment
               code.javascript.
-                var webpack = require('webpack');
+                const webpack = require('webpack');
+                const path = require('path');
 
                 module.exports = {
                   entry: {
@@ -238,26 +264,25 @@ html(lang="en")
                     'vendor': './src/vendor.js',
                   },
                   output: {
-                    path: './build/',
-                    filename: '[name]-[hash].js'
+                    filename: '[name]-[chunkhash].js'
+                    path: path.resolve(__dirname, 'dist'),
                   },
                   module: {...},
                   plugins: [
                     new webpack.optimize.CommonsChunkPlugin({
-                      filename: "[name]-[hash].js",
-                      name: "common"
+                      name: ['vendor', 'manifest']
                     }),
                   ]
                 };
-            p.fragment.current-only(data-code-focus="4-7") Define multiple entry points
-            p.fragment.current-only(data-code-focus="14-17") Use the CommonsChunkPlugin to build a chunk with common code
+            p.fragment.current-only(data-code-focus="5-8") Define multiple entry points
+            p.fragment.current-only(data-code-focus="15-18") Use the CommonsChunkPlugin to build chunks
           section
             p This will create:
             ul.fragment
               li index.html
-              li common-00d6787913610ea5ba02.js
+              li app-d3b256d536a4ea13be70.js
+              li manifest-5d28af194df34fef3fc4.js
               li vendor-00d6787913610ea5ba02.js
-              li app-00d6787913610ea5ba02.js
         section
           h2 Linting
           pre.fragment
@@ -266,29 +291,28 @@ html(lang="en")
                 entry: './src/entry.js',
                 output: {...},
                 module: {
-                  preLoaders: [
+                  rules: [
                     {
                       test: /\.js$/,
                       exclude: /node_modules/,
-                      loader: 'jscs-loader'
-                    }, {
-                      test: /\.js$/,
-                      exclude: /node_modules/,
-                      loader: 'jshint-loader'
-                    }
+                      loader: "eslint-loader",
+                      options: {
+                        // eslint options (if necessary)
+                      }
+                    },
                   ],
-                  loaders: [...]
-                }
+                },
               };
-          p.fragment.current-only(data-code-focus="5-15") Pre loaders get executen before loaders
-          p.fragment.current-only(data-code-focus="6-10") Enable jscs
-          p.fragment.current-only(data-code-focus="10-15") Enable jshint
         section
           h2 Testing
           .fragment
             p Have a look at karma-webpack
             p
               a(href="https://github.com/webpack/karma-webpack") https://github.com/webpack/karma-webpack
+          .fragment
+            p or mocha-loader
+            p
+              a(href="https://github.com/webpack-contrib/mocha-loader") https://github.com/webpack-contrib/mocha-loader
         section
           section
             h2 Full sample
@@ -306,8 +330,10 @@ html(lang="en")
         section
           h1 Thank you
         section
-          h1 Questions ?
+          h2 Questions ?
           hr
+          p Official webpack docs:
+          p: a(href="https://webpack.js.org/") webpack.js.org
           p View this presentation at:
           p: a(href="http://akuryou.github.io/introduction-to-webpack") akuryou.github.io/introduction-to-webpack
           p Clone it, fork it at:

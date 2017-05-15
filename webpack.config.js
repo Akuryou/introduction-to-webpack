@@ -1,67 +1,41 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    'entry': './src/entry.js',
+    'main': './src/main.js',
     'vendor': './src/vendor.js',
   },
   resolve: {
-    root: __dirname,
+    modules: [
+      'node_modules',
+      path.join(__dirname, 'src'),
+    ]
   },
   output: {
-    path: './build',
-    filename: '[name]-[hash].js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name]-[chunkhash].js',
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'jscs-loader'
-      }, {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'jshint-loader'
-      }
-    ],
-    loaders: [
-      {test: /\.pug$/, loader: 'pug-loader'},
-      {test: /\.css$/, loader: 'style!css'},
-      {test: /\.styl$/, loader: 'style!css!stylus'},
-      {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
+    rules: [
+      {test: /\.pug$/, use: ['pug-loader']},
+      {test: /\.css$/, use: ['style-loader', 'css-loader']},
+      {test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader']},
+      {test: /\.(jpe?g|png|gif)$/i, use: ['file-loader']},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: ['svg-url-loader?noquotes']},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.pug', }),
-    new webpack.optimize.DedupePlugin(), // removes duplicate code
-    new webpack.optimize.OccurrenceOrderPlugin(true), // optimises size
     new webpack.optimize.CommonsChunkPlugin({
-      filename: '[name]-[hash].js',
-      name: 'common'
+      name: ['vendor', 'manifest']
     })
   ],
-  jscs: {
-    preset: 'airbnb',
-    requirePaddingNewLinesAfterBlocks: {
-      allExcept: ['inCallExpressions', 'inNewExpressions', 'inArrayExpressions', 'inProperties']
-    },
-    requireSpacesInAnonymousFunctionExpression: {
-      beforeOpeningCurlyBrace: true
-    },
-    requireSpacesInsideObjectBrackets: false,
-    maximumLineLength: {
-      value: 140
-    },
-  },
-  jshint: {
-    browser: true,
-  },
   devServer: {
     host: '0.0.0.0',
   },
