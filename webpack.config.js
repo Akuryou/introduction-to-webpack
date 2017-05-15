@@ -29,7 +29,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.pug', }),
     new webpack.optimize.DedupePlugin(), // removes duplicate code
-    new webpack.optimize.OccurrenceOrderPlugin(true), // optimises size
     new webpack.optimize.CommonsChunkPlugin({
       filename: '[name]-[hash].js',
       name: 'common'
