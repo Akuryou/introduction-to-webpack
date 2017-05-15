@@ -255,7 +255,8 @@ html(lang="en")
             p Splitting bundles
             pre.fragment
               code.javascript.
-                var webpack = require('webpack');
+                const webpack = require('webpack');
+                const path = require('path');
 
                 module.exports = {
                   entry: {
@@ -263,26 +264,25 @@ html(lang="en")
                     'vendor': './src/vendor.js',
                   },
                   output: {
-                    path: './build/',
-                    filename: '[name]-[hash].js'
+                    filename: '[name]-[chunkhash].js'
+                    path: path.resolve(__dirname, 'dist'),
                   },
                   module: {...},
                   plugins: [
                     new webpack.optimize.CommonsChunkPlugin({
-                      filename: "[name]-[hash].js",
-                      name: "common"
+                      name: ['vendor', 'manifest']
                     }),
                   ]
                 };
-            p.fragment.current-only(data-code-focus="4-7") Define multiple entry points
-            p.fragment.current-only(data-code-focus="14-17") Use the CommonsChunkPlugin to build a chunk with common code
+            p.fragment.current-only(data-code-focus="5-8") Define multiple entry points
+            p.fragment.current-only(data-code-focus="15-18") Use the CommonsChunkPlugin to build chunks
           section
             p This will create:
             ul.fragment
               li index.html
-              li common-00d6787913610ea5ba02.js
+              li app-d3b256d536a4ea13be70.js
+              li manifest-5d28af194df34fef3fc4.js
               li vendor-00d6787913610ea5ba02.js
-              li app-00d6787913610ea5ba02.js
         section
           h2 Linting
           pre.fragment
