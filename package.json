@@ -1,7 +1,7 @@
 {
   "name": "introduction-to-webpack",
-  "version": "0.0.0",
-  "description": "A presentation about webpack basics",
+  "version": "2.0.0",
+  "description": "A presentation about webpack 2 basics",
   "scripts": {
     "start": "webpack-dev-server --inline",
     "build": "webpack --config webpack.production",
