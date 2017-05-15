@@ -8,7 +8,7 @@
       transition: 'fade',
       history: true,
     });
-    require('script!reveal-code-focus');
+    require('script-loader!reveal-code-focus');
     window.RevealCodeFocus();
   }, 100);
 

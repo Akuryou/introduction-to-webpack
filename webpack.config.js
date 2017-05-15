@@ -18,16 +18,16 @@ module.exports = {
     filename: '[name]-[chunkhash].js',
   },
   module: {
-    loaders: [
-      {test: /\.pug$/, loader: 'pug-loader'},
-      {test: /\.css$/, loader: 'style!css'},
-      {test: /\.styl$/, loader: 'style!css!stylus'},
-      {test: /\.(jpe?g|png|gif|svg)$/i, loader:'file'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
+    rules: [
+      {test: /\.pug$/, use: ['pug-loader']},
+      {test: /\.css$/, use: ['style-loader', 'css-loader']},
+      {test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader']},
+      {test: /\.(jpe?g|png|gif|svg)$/i, use: ['file-loader']},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
+      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, use: ['file-loader']},
     ]
   },
   plugins: [
