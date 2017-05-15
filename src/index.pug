@@ -58,23 +58,21 @@ html(lang="en")
           p.fragment How do I declare dependencies?
         section
           section
-            h3 A short detour about
-            h2 CommonJS
+            h3 A short detour about Modules
+            p.fragment Supported are CommonJS, AMD and ES2015 imports
           section
-            p CommonJS is one of the supported module formats.
-            p.fragment (Others are AMD and ES6 Modules)
+            h2 CommonJS
           section
             h3 Referencing a module
             pre.fragment
               code.javascript.
-                var SomeModule = require('./SomeModule.js');
+                var SomeModule = require('./some-module.js');
                 SomeModule.doAwesomeStuff();
 
             p.fragment.current-only(data-code-focus="1") "require" the module
             p.fragment.current-only(data-code-focus="2") Use it
           section
             h3 Defining a module
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 module.exports = {
@@ -82,7 +80,6 @@ html(lang="en")
                 }
           section
             h3 limiting access
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 function somePrivateMethod() {...}
@@ -97,7 +94,6 @@ html(lang="en")
             p.fragment.current-only(data-code-focus="3-7") exported
           section
             h3 Use closures and be strict!
-            i (MyModule.js)
             pre.fragment
               code.javascript.
                 (function() {
@@ -108,20 +104,44 @@ html(lang="en")
                   }
 
                 })();
+          section
+            h2 ES2015 module import
+          section
+            h3 Importing
+            pre.fragment
+              code.javascript.
+                import {myMember} from 'my-module';
+
+                import {foo, bar} from 'my-module';
+
+                import {longModuleMemberName as shortName} from 'my-module';
+
+            p.fragment.current-only(data-code-focus="1") Import one member
+            p.fragment.current-only(data-code-focus="3") Import multiple members
+            p.fragment.current-only(data-code-focus="5") Use aliases
+          section
+            h3 Defining a module
+            pre.fragment
+              code.javascript.
+                function somePrivateMethod() {...}
+
+                export function doAwesomeStuff() {...}
+            p.fragment
+              a(href="https://developer.mozilla.org//en-US/docs/Web/JavaScript/Reference/Statements/import") See official documentation
         section
           section
             h2 Require other stuff
             h4 in javascript files
             pre.fragment
-              code.
+              code.javascript.
                 var data = require('someData.json');
             p.fragment Will load the json data and convert them to an object.
             pre.fragment
-              code.
+              code.javascript.
                 var template = require('template.html');
             p.fragment Will return the template as string or template funtion
             pre.fragment
-              code.
+              code.javascript.
                 require('prettyStyles.css');
             p.fragment
               = 'Will inject the css as style block into the <head> section'
