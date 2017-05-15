@@ -1,6 +1,6 @@
 {
   "name": "introduction-to-webpack",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A presentation about webpack basics",
   "scripts": {
     "start": "webpack-dev-server --inline",
