@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    'entry': './src/entry.js',
+    'main': './src/entry.js',
     'vendor': './src/vendor.js',
   },
   resolve: {
@@ -33,8 +33,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.pug', }),
     new webpack.optimize.CommonsChunkPlugin({
-      filename: '[name]-[hash].js',
-      name: 'common'
+      name: ['vendor', 'manifest']
     })
   ],
   devServer: {
