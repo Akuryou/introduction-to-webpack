@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    'main': './src/entry.js',
+    'main': './src/main.js',
     'vendor': './src/vendor.js',
   },
   resolve: {
